@@ -35,6 +35,20 @@ Un composant autonome pour afficher vos compétences avec un cube 3D rotatif.
 
 [📥 Télécharger](./cube-template)
 
+### 3. 🤖 AI Agent Widget (NOUVEAU!)
+Un widget chatbot moderne et élégant pour intégrer un assistant IA sur votre site.
+
+**Fonctionnalités:**
+- 💬 Interface chat moderne
+- ✨ Design Glassmorphism
+- 🎨 Variables CSS personnalisables
+- 📱 Responsive mobile
+- ⚡ Pur JS - Aucune dépendance
+- 🌓 Support mode clair/sombre
+- 💡 Réponses configurables
+
+[📥 Télécharger](./ai-agent-template)
+
 ## 🚀 Installation
 
 ```bash
@@ -46,7 +60,7 @@ git clone https://github.com/Mubarez11/zenclass-templates.git
 
 ## 🎨 Personnalisation
 
-Les deux templates utilisent des variables CSS pour une personnalisation facile :
+Les templates utilisent des variables CSS pour une personnalisation facile :
 
 ```css
 :root {
