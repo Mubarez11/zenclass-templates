@@ -1,0 +1,477 @@
+/* ============================================
+   ZENCLASS 3D SKILLS CUBE - CSS
+   Composant autonome pour afficher les compétences
+   ============================================ */
+
+/* Variables */
+:root {
+    --bg-primary: #0a0a1a;
+    --bg-secondary: #12122a;
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --violet-accent: #a855f7;
+    --cyan-accent: #22d3ee;
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --border-radius: 16px;
+    --transition-smooth: all 0.3s ease;
+}
+
+body.light-mode {
+    --bg-primary: #f8f9fa;
+    --bg-secondary: #ffffff;
+    --text-primary: #1a1a2e;
+    --text-secondary: rgba(26, 26, 46, 0.7);
+    --glass-bg: rgba(255, 255, 255, 0.8);
+    --glass-border: rgba(0, 0, 0, 0.1);
+}
+
+/* Reset */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Demo Header */
+.demo-header {
+    text-align: center;
+    padding: 3rem 2rem 2rem;
+    background: var(--glass-bg);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.demo-header h1 {
+    font-size: 2.5rem;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+.demo-header p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.theme-toggle {
+    display: flex;
+    justify-content: center;
+}
+
+.theme-btn {
+    padding: 0.75rem 1.5rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1.25rem;
+    transition: var(--transition-smooth);
+}
+
+.theme-btn:hover {
+    background: rgba(168, 85, 247, 0.2);
+    border-color: var(--violet-accent);
+}
+
+.theme-btn .moon { display: none; }
+body.light-mode .theme-btn .sun { display: none; }
+body.light-mode .theme-btn .moon { display: inline; }
+
+/* ============================================
+   SKILLS SECTION
+   ============================================ */
+
+.skills-section {
+    padding: 4rem 2rem;
+    min-height: calc(100vh - 200px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.skills-layout {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 3rem;
+    max-width: 1100px;
+    width: 100%;
+    align-items: start;
+}
+
+/* Cube Side */
+.skills-cube-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    position: sticky;
+    top: 2rem;
+}
+
+.cube-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: transparent;
+}
+
+/* 3D Cube Scene */
+.cube-scene {
+    width: 200px;
+    height: 200px;
+    perspective: 800px;
+}
+
+.skills-cube {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateX(-15deg) rotateY(-25deg);
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Cube Faces */
+.cube-face {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    backface-visibility: visible;
+}
+
+.cube-front { 
+    transform: translateZ(100px); 
+    background: linear-gradient(145deg, rgba(102, 126, 234, 0.7) 0%, rgba(118, 75, 162, 0.6) 100%);
+    border-color: rgba(102, 126, 234, 0.5);
+}
+
+.cube-back { 
+    transform: rotateY(180deg) translateZ(100px); 
+    background: linear-gradient(145deg, rgba(168, 85, 247, 0.7) 0%, rgba(139, 92, 246, 0.6) 100%);
+    border-color: rgba(168, 85, 247, 0.5);
+}
+
+.cube-right { 
+    transform: rotateY(90deg) translateZ(100px); 
+    background: linear-gradient(145deg, rgba(240, 147, 251, 0.6) 0%, rgba(236, 72, 153, 0.5) 100%);
+    border-color: rgba(236, 72, 153, 0.5);
+}
+
+.cube-left { 
+    transform: rotateY(-90deg) translateZ(100px); 
+    background: linear-gradient(145deg, rgba(34, 197, 94, 0.6) 0%, rgba(16, 185, 129, 0.5) 100%);
+    border-color: rgba(34, 197, 94, 0.5);
+}
+
+.cube-top { 
+    transform: rotateX(90deg) translateZ(100px); 
+    background: linear-gradient(145deg, rgba(59, 130, 246, 0.7) 0%, rgba(37, 99, 235, 0.6) 100%);
+    border-color: rgba(59, 130, 246, 0.5);
+}
+
+.cube-bottom { 
+    transform: rotateX(-90deg) translateZ(100px); 
+    background: linear-gradient(145deg, rgba(251, 146, 60, 0.6) 0%, rgba(234, 88, 12, 0.5) 100%);
+    border-color: rgba(251, 146, 60, 0.5);
+}
+
+.cube-face:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 20px var(--cyan-accent);
+}
+
+/* Face Content */
+.face-icon {
+    margin-bottom: 0.75rem;
+}
+
+.face-icon svg {
+    width: 48px;
+    height: 48px;
+    stroke: white;
+}
+
+.cube-face h3 {
+    font-size: 1.1rem;
+    color: white;
+    margin-bottom: 0.25rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.skill-level {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 0.2rem 0.75rem;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+}
+
+/* Cube Controls */
+.cube-controls {
+    display: flex;
+    justify-content: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    padding: 0.5rem 0.75rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 50px;
+    margin-top: 1rem;
+    backdrop-filter: blur(10px);
+}
+
+.cube-control-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1rem;
+    border-radius: 30px;
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    white-space: nowrap;
+}
+
+.cube-control-btn svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+.cube-control-btn:hover,
+.cube-control-btn.active {
+    background: rgba(168, 85, 247, 0.2);
+    color: var(--text-primary);
+    border-color: var(--violet-accent);
+}
+
+.cube-control-btn.auto-rotate.active {
+    background: rgba(34, 197, 94, 0.2);
+    border-color: #22c55e;
+    color: #22c55e;
+}
+
+/* ============================================
+   SKILL DETAILS PANEL
+   ============================================ */
+
+.skill-details {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    backdrop-filter: blur(20px);
+    min-height: 400px;
+}
+
+.skill-category {
+    display: none;
+    animation: fadeInSkills 0.4s ease;
+}
+
+.skill-category.active {
+    display: block;
+}
+
+@keyframes fadeInSkills {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.skill-category h3 {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.category-icon {
+    font-size: 1.5rem;
+}
+
+.skills-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.skill-item {
+    display: grid;
+    grid-template-columns: 180px 1fr 60px;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    background: rgba(168, 85, 247, 0.05);
+    border-radius: 10px;
+    border: 1px solid rgba(168, 85, 247, 0.1);
+    transition: var(--transition-smooth);
+}
+
+.skill-item:hover {
+    background: rgba(168, 85, 247, 0.1);
+    border-color: rgba(168, 85, 247, 0.2);
+}
+
+.skill-name {
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.skill-bar {
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.skill-progress {
+    height: 100%;
+    background: var(--primary-gradient);
+    border-radius: 4px;
+    width: 0;
+    transition: width 1s ease;
+}
+
+.skill-percent {
+    font-size: 0.9rem;
+    color: var(--violet-accent);
+    font-weight: 600;
+    text-align: right;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+.demo-footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid var(--glass-border);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.demo-footer a {
+    color: var(--violet-accent);
+    text-decoration: none;
+}
+
+.demo-footer a:hover {
+    text-decoration: underline;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 900px) {
+    .skills-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .skills-cube-side {
+        position: static;
+    }
+    
+    .cube-controls {
+        justify-content: center;
+    }
+    
+    .btn-label {
+        display: none;
+    }
+    
+    .cube-control-btn {
+        padding: 0.6rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .demo-header h1 {
+        font-size: 1.75rem;
+    }
+    
+    .cube-scene {
+        width: 160px;
+        height: 160px;
+    }
+    
+    .cube-face {
+        width: 160px;
+        height: 160px;
+    }
+    
+    .cube-front { transform: translateZ(80px); }
+    .cube-back { transform: rotateY(180deg) translateZ(80px); }
+    .cube-right { transform: rotateY(90deg) translateZ(80px); }
+    .cube-left { transform: rotateY(-90deg) translateZ(80px); }
+    .cube-top { transform: rotateX(90deg) translateZ(80px); }
+    .cube-bottom { transform: rotateX(-90deg) translateZ(80px); }
+    
+    .face-icon svg {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .cube-face h3 {
+        font-size: 0.95rem;
+    }
+    
+    .skill-item {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+    
+    .skill-percent {
+        text-align: left;
+    }
+    
+    .skill-details {
+        padding: 1.5rem;
+    }
+}
+
+/* Light Mode Adjustments */
+body.light-mode .cube-face {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .skill-bar {
+    background: rgba(0, 0, 0, 0.1);
+}
